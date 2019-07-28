@@ -1,0 +1,17 @@
+In population annealing (PA), we deal with an ensemble of N replicas (particles) simultaneously, rather than with just one replica as in simulated annealing (SA).
+
+At each temperature, the population is resampled to try to make the distribution more Boltzmann-like (i.e. closer to the equilibrium state). This is what is lacking in SA, otherwise
+the PA algorithm proceeds similar to SA, with a series of Markov Chain Monte Carlo updates at each temperature following the population resampling.
+
+In the limit that the number of replicas goes to infinity, we always generate a Boltzmann distribution at each temperature as we proceed. However, we have only a finite number of replicas,
+hence the need for the MCMC part of the algorithm also.
+
+PA is often said to be a combination of 'sequential Monte Carlo' and 'Markov Chain Monte Carlo'. The sequential part is the resampling, where we take the distribution at a given temperature 
+beta_{i} and obtain from it the distribution at temperature beta_{i+1}. The Markov Chain part consists of stepping through different configurations as we do in SA.
+
+The things we will want to look at are:
+
+    - how the resampling method chosen affects the solutions
+    - what cooling schedule to use, and the interplay with the resampling method chosen
+    - 'pedigree plots', i.e. how the different solutions reproduce with time/temp
+    - fraction of solved problems, etc (see H Katzraber video)
